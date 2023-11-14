@@ -237,6 +237,30 @@ Producer represents a producer that has been onboarded.
 | `agency_name` | [`string`](#string) |  |  |
 | `licenses` | [`License`](#producer.License) | repeated | The licenses of the producer. |
 | `biographic` | [`Producer.Biographic`](#producer.Producer.Biographic) |  |  |
+| `regulatory_info` | [`Producer.ProducerRegulatoryInfo`](#producer.Producer.ProducerRegulatoryInfo) |  |  |
+| `appointments` | [`Producer.Appointment`](#producer.Producer.Appointment) | repeated |  |
+
+
+
+
+
+#### <div id="producer.Producer.Appointment">Producer.Appointment</div>
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| `branch_id` | [`string`](#string) |  |  |
+| `company_name` | [`string`](#string) |  |  |
+| `fein` | [`string`](#string) |  |  |
+| `co_code` | [`string`](#string) |  |  |
+| `line_of_authority` | [`string`](#string) |  |  |
+| `loa_code` | [`string`](#string) |  |  |
+| `status` | [`string`](#string) |  |  |
+| `termination_reason` | [`string`](#string) |  |  |
+| `status_reason_date` | [`string`](#string) |  |  |
+| `appointment_renewal_date` | [`string`](#string) |  |  |
+| `agency_affiliations` | [`string`](#string) |  |  |
 
 
 
@@ -256,6 +280,54 @@ Producer represents a producer that has been onboarded.
 | `fein` | [`string`](#string) |  |  |
 | `company_name` | [`string`](#string) |  |  |
 | `state_domicile` | [`string`](#string) |  |  |
+
+
+
+
+
+#### <div id="producer.Producer.ProducerRegulatoryInfo">Producer.ProducerRegulatoryInfo</div>
+ProducerRegulatoryInfo contains regulatory information about a producer.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| `regulatory_actions_by_state` | [`Producer.ProducerRegulatoryInfo.RegulatoryActionsByStateEntry`](#producer.Producer.ProducerRegulatoryInfo.RegulatoryActionsByStateEntry) | repeated | Regulatory actions by state, if any. |
+| `clearance_certification_info` | [`string`](#string) |  |  |
+| `nasd_exam_details` | [`string`](#string) |  |  |
+
+
+
+
+
+#### <div id="producer.Producer.ProducerRegulatoryInfo.RegulatoryAction">Producer.ProducerRegulatoryInfo.RegulatoryAction</div>
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| `action_id` | [`string`](#string) |  |  |
+| `origin_of_action` | [`string`](#string) |  |  |
+| `reason_for_action` | [`string`](#string) |  |  |
+| `disposition` | [`string`](#string) |  |  |
+| `date_of_action` | [`string`](#string) |  |  |
+| `effective_date` | [`string`](#string) |  |  |
+| `enter_date` | [`string`](#string) |  |  |
+| `file_ref` | [`string`](#string) |  |  |
+| `penalty_fine_forfeiture` | [`string`](#string) |  |  |
+| `length_of_order` | [`string`](#string) |  |  |
+
+
+
+
+
+#### <div id="producer.Producer.ProducerRegulatoryInfo.RegulatoryActionsByStateEntry">Producer.ProducerRegulatoryInfo.RegulatoryActionsByStateEntry</div>
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| `key` | [`string`](#string) |  |  |
+| `value` | [`Producer.ProducerRegulatoryInfo.RegulatoryAction`](#producer.Producer.ProducerRegulatoryInfo.RegulatoryAction) |  |  |
 
 
 
