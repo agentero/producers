@@ -70,7 +70,7 @@ Producer lookup by the agency's tax number.
 
 
 #### <div id="producer.License">License</div>
-
+Producers license information and status.
 
 
 | Field | Type | Label | Description |
@@ -236,9 +236,9 @@ Producer represents a producer that has been onboarded.
 | `npn` | [`string`](#string) |  | The NPN of the producer. This is used to retrieve the license information of the producer from the NIPR API. |
 | `agency_name` | [`string`](#string) |  |  |
 | `licenses` | [`License`](#producer.License) | repeated | The licenses of the producer. |
-| `biographic` | [`Producer.Biographic`](#producer.Producer.Biographic) |  |  |
-| `regulatory_info` | [`Producer.ProducerRegulatoryInfo`](#producer.Producer.ProducerRegulatoryInfo) |  |  |
-| `appointments` | [`Producer.Appointment`](#producer.Producer.Appointment) | repeated |  |
+| `biographic` | [`Producer.Biographic`](#producer.Producer.Biographic) |  | Biographic information of the producer. |
+| `regulatory_info` | [`Producer.ProducerRegulatoryInfo`](#producer.Producer.ProducerRegulatoryInfo) |  | Producer's regulatory information. |
+| `appointments` | [`Producer.Appointment`](#producer.Producer.Appointment) | repeated | The list of carrier appointments of the producer. |
 
 
 
@@ -259,7 +259,7 @@ Producer represents a producer that has been onboarded.
 | `status` | [`string`](#string) |  |  |
 | `termination_reason` | [`string`](#string) |  |  |
 | `status_reason_date` | [`string`](#string) |  |  |
-| `appointment_renewal_date` | [`string`](#string) |  |  |
+| `appointment_renewal_date` | [`google.protobuf.Timestamp`](#google.protobuf.Timestamp) |  |  |
 | `agency_affiliations` | [`string`](#string) |  |  |
 
 
@@ -267,7 +267,7 @@ Producer represents a producer that has been onboarded.
 
 
 #### <div id="producer.Producer.Biographic">Producer.Biographic</div>
-
+Biographic information of the producer.
 
 
 | Field | Type | Label | Description |
@@ -275,7 +275,7 @@ Producer represents a producer that has been onboarded.
 | `last_name` | [`string`](#string) |  |  |
 | `first_name` | [`string`](#string) |  |  |
 | `middle_name` | [`string`](#string) |  |  |
-| `date_of_birth` | [`string`](#string) |  |  |
+| `date_of_birth` | [`google.protobuf.Timestamp`](#google.protobuf.Timestamp) |  |  |
 | `ssn` | [`string`](#string) |  |  |
 | `fein` | [`string`](#string) |  |  |
 | `company_name` | [`string`](#string) |  |  |
@@ -309,9 +309,9 @@ ProducerRegulatoryInfo contains regulatory information about a producer.
 | `origin_of_action` | [`string`](#string) |  |  |
 | `reason_for_action` | [`string`](#string) |  |  |
 | `disposition` | [`string`](#string) |  |  |
-| `date_of_action` | [`string`](#string) |  |  |
-| `effective_date` | [`string`](#string) |  |  |
-| `enter_date` | [`string`](#string) |  |  |
+| `date_of_action` | [`google.protobuf.Timestamp`](#google.protobuf.Timestamp) |  |  |
+| `effective_date` | [`google.protobuf.Timestamp`](#google.protobuf.Timestamp) |  |  |
+| `enter_date` | [`google.protobuf.Timestamp`](#google.protobuf.Timestamp) |  |  |
 | `file_ref` | [`string`](#string) |  |  |
 | `penalty_fine_forfeiture` | [`string`](#string) |  |  |
 | `length_of_order` | [`string`](#string) |  |  |
@@ -361,25 +361,6 @@ Producer lookup with a matching tax number and last name.
 | LICENSE_STATUS_EXPIRED | 1 |  |
 | LICENSE_STATUS_VALID | 2 |  |
 | LICENSE_STATUS_NOT_ACTIVE | 3 |  |
-
-
-<a name="producer.LineOfAuthority"></a>
-
-#### LineOfAuthority
-
-
-| Name | Number | Description |
-| ---- | ------ | ----------- |
-| LINE_OF_AUTHORITY_UNSPECIFIED | 0 |  |
-| LINE_OF_AUTHORITY_LIFE | 1 |  |
-| LINE_OF_AUTHORITY_PERSONAL | 2 |  |
-| LINE_OF_AUTHORITY_PERSONAL_AUTO | 3 |  |
-| LINE_OF_AUTHORITY_PROPERTY_AND_CASUALTY | 4 |  |
-| LINE_OF_AUTHORITY_HEALTH | 5 |  |
-| LINE_OF_AUTHORITY_COMMERCIAL | 6 |  |
-| LINE_OF_AUTHORITY_LIMITED_COMMERCIAL | 7 |  |
-| LINE_OF_AUTHORITY_SURPLUS_LINES | 8 |  |
-| LINE_OF_AUTHORITY_OTHER | 9 |  |
 
 
 

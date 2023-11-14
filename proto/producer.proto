@@ -45,16 +45,18 @@ message Producer {
   // The licenses of the producer.
   repeated License licenses = 6;
 
+  // Biographic information of the producer.
   message Biographic {
     string last_name = 1;
     string first_name = 2;
     string middle_name = 3;
-    string date_of_birth = 4;
+    google.protobuf.Timestamp date_of_birth = 4;
     string ssn = 6;
     string fein = 7;
     string company_name = 8;
     string state_domicile = 9;
   }
+  // Biographic information of the producer.
   Biographic biographic = 7;
   // ProducerRegulatoryInfo contains regulatory information about a producer.
   message ProducerRegulatoryInfo {
@@ -63,9 +65,9 @@ message Producer {
       string origin_of_action = 2;
       string reason_for_action = 3;
       string disposition = 4;
-      string date_of_action = 5;
-      string effective_date = 6;
-      string enter_date = 7;
+      google.protobuf.Timestamp date_of_action = 5;
+      google.protobuf.Timestamp effective_date = 6;
+      google.protobuf.Timestamp enter_date = 7;
       string file_ref = 8;
       string penalty_fine_forfeiture = 9;
       string length_of_order = 10; 
@@ -75,6 +77,7 @@ message Producer {
     string clearance_certification_info = 2;
     string nasd_exam_details = 3;
   }
+  // Producer's regulatory information.
   ProducerRegulatoryInfo regulatory_info = 8;
 
   message Appointment {
@@ -87,25 +90,14 @@ message Producer {
     string status = 7;
     string termination_reason = 8;
     string status_reason_date = 9;
-    string appointment_renewal_date = 10;
+    google.protobuf.Timestamp appointment_renewal_date = 10;
     string agency_affiliations = 11;
   }
+  // The list of carrier appointments of the producer.
   repeated Appointment appointments = 9;
 }
 
-enum LineOfAuthority {
-  LINE_OF_AUTHORITY_UNSPECIFIED = 0;
-  LINE_OF_AUTHORITY_LIFE = 1;
-  LINE_OF_AUTHORITY_PERSONAL = 2;
-  LINE_OF_AUTHORITY_PERSONAL_AUTO = 3;
-  LINE_OF_AUTHORITY_PROPERTY_AND_CASUALTY = 4;
-  LINE_OF_AUTHORITY_HEALTH = 5;
-  LINE_OF_AUTHORITY_COMMERCIAL = 6;
-  LINE_OF_AUTHORITY_LIMITED_COMMERCIAL = 7;
-  LINE_OF_AUTHORITY_SURPLUS_LINES = 8;
-  LINE_OF_AUTHORITY_OTHER = 9;
-}
-
+// Producers license information and status.
 message License {
   enum LicenseStatus {
     LICENSE_STATUS_UNSPECIFIED = 0;
