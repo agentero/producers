@@ -32,7 +32,7 @@ jobs:
           uri: "https://github.com/pseudomuto/protoc-gen-doc/releases/download/v${{ env.PROTOC_GENDOC_VERSION }}/protoc-gen-doc_${{ env.PROTOC_GENDOC_VERSION }}_linux_amd64.tar.gz"
           name: 'protoc'
           subPath: 'bin'
-          version: ${{ env.PROTOC_VERSION }}
+          version: ${{ env.PROTOC_GENDOC_VERSION }}
 
       - name: Checkout repo
         uses: actions/checkout@v3
