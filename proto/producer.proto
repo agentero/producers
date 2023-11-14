@@ -1,0 +1,128 @@
+syntax = "proto3";
+package producer;
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/agentero/producers";
+
+// ProducerService defines the API for managing producers.
+service ProducerService {
+  // Return the list of new producers of an Agency. A producer is considered
+  // new if:
+  // 1. It is not in the list of processed producers.
+  // 2. Since its creation, it has not been updated.
+  rpc ListNewProducers(ListNewProducersRequest) 
+    returns (ListNewProducersResponse);
+  // Return the list of updated producers of an Agency. A producer is considered
+  // updated if:
+  // 1. It is not in the list of processed producers.
+  // 2. Since its creation, it has been updated.
+  rpc ListUpdatedProducers(ListUpdatedProducersRequest) 
+    returns (ListUpdatedProducersResponse);
+  // Mark a list of producers as processed, so they will not be returned
+  // in future calls to ListNewProducers or ListUpdatedProducers.
+  rpc MarkAsProcessed(MarkAsProcessedRequest) returns (google.protobuf.Empty);
+  // NewProducer starts the onboarding process for the given producer.
+  rpc NewProducer(NewProducerRequest) returns (google.protobuf.Empty);
+  // NewProducers does the same as NewProducer but accepts a list of producers
+  // to onboard.
+  rpc NewProducers(NewProducersRequest) returns (google.protobuf.Empty);
+}
+
+enum LineOfAuthority {
+  LINE_OF_AUTHORITY_UNSPECIFIED = 0;
+  LINE_OF_AUTHORITY_LIFE = 1;
+  LINE_OF_AUTHORITY_PERSONAL = 2;
+  LINE_OF_AUTHORITY_PERSONAL_AUTO = 3;
+  LINE_OF_AUTHORITY_PROPERTY_AND_CASUALTY = 4;
+  LINE_OF_AUTHORITY_HEALTH = 5;
+  LINE_OF_AUTHORITY_COMMERCIAL = 6;
+  LINE_OF_AUTHORITY_LIMITED_COMMERCIAL = 7;
+  LINE_OF_AUTHORITY_SURPLUS_LINES = 8;
+  LINE_OF_AUTHORITY_OTHER = 9;
+}
+
+message License {
+  enum LicenseStatus {
+    LICENSE_STATUS_UNSPECIFIED = 0;
+    LICENSE_STATUS_EXPIRED = 1;
+    LICENSE_STATUS_VALID = 2;
+    LICENSE_STATUS_NOT_ACTIVE = 3;
+  }
+    
+  string license_number = 1;
+  string license_state = 2;
+  string residency_status = 3;
+  bool active = 4;
+  LicenseStatus status = 5;
+  google.protobuf.Timestamp expiration_date = 6;
+  google.protobuf.Timestamp updated_at = 7;
+}
+
+// Producer represents a producer that has been onboarded.
+message Producer {
+  // Internal ID of the producer.
+  string id = 1;
+  // The name of the producer.
+  string name = 2;
+  // The email of the producer.
+  string email = 3;
+  // The NPN of the producer. This is used to retrieve the license information
+  // of the producer from the NIPR API.
+  string npn = 4;
+  string agency_name = 5;
+  // The licenses of the producer.
+  repeated License licenses = 6;
+}
+// NewProducer is a Producer that has not been processed yet.
+message NewProducer {
+  string npn = 1;
+  string name = 2;
+  string email = 3;
+}
+// Request to list new producers for an Agency.
+message ListNewProducersRequest {
+  optional string agency_name = 1;
+}
+
+// Response containing a list of new producers for an Agency.
+message ListNewProducersResponse {
+  repeated Producer new_producers = 1;
+}
+
+// Request to list updated producers for an Agency.
+message ListUpdatedProducersRequest {
+  optional string agency_name = 1;
+}
+
+// Response containing a list of updated producers for an Agency.
+message ListUpdatedProducersResponse {
+  repeated Producer updated_producers = 1;
+}
+
+// Request to mark a list of producers as processed.
+message MarkAsProcessedRequest {
+  string agency_name = 1;
+  repeated string producer_ids = 2;
+}
+
+// Request to onboard a new producer and automatically associate it 
+// with an Agency.
+// This will trigger a call to the NIPR API to retrieve license information 
+// of the producer.
+message NewProducerRequest {
+  string agency_name = 1;
+  string agency_fein = 2;
+  NewProducer producer = 3;
+}
+
+// Request to onboard a list of producers and automatically associate them 
+// with an Agency.
+// This will trigger a call to the NIPR API to retrieve license information of 
+// every producer in the list.
+message NewProducersRequest {
+  string agency_name = 1;
+  string agency_fein = 2;
+  repeated NewProducer producers = 3;
+}

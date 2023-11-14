@@ -1,0 +1,23 @@
+type: google.api.Service
+config_version: 3
+
+http:
+  rules:
+    - selector: producer.ProducerService.ListNewProducers
+      get: "/v1/producers/new"
+
+    - selector: producer.ProducerService.ListUpdatedProducers
+      get: "/v1/producers/updated"
+
+    - selector: producer.ProducerService.MarkAsProcessed
+      post: "/v1/producers/mark_as_processed"
+      body: "*"
+
+    - selector: producer.ProducerService.NewProducer
+      post: "/v1/producers/new"
+      body: "*"
+
+    - selector: producer.ProducerService.NewProducers
+      post: "/v1/producers/new_list"
+      body: "*"
+    
