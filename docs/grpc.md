@@ -236,6 +236,26 @@ Producer represents a producer that has been onboarded.
 | `npn` | [`string`](#string) |  | The NPN of the producer. This is used to retrieve the license information of the producer from the NIPR API. |
 | `agency_name` | [`string`](#string) |  |  |
 | `licenses` | [`License`](#producer.License) | repeated | The licenses of the producer. |
+| `biographic` | [`Producer.Biographic`](#producer.Producer.Biographic) |  |  |
+
+
+
+
+
+#### <div id="producer.Producer.Biographic">Producer.Biographic</div>
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| `last_name` | [`string`](#string) |  |  |
+| `first_name` | [`string`](#string) |  |  |
+| `middle_name` | [`string`](#string) |  |  |
+| `date_of_birth` | [`string`](#string) |  |  |
+| `ssn` | [`string`](#string) |  |  |
+| `fein` | [`string`](#string) |  |  |
+| `company_name` | [`string`](#string) |  |  |
+| `state_domicile` | [`string`](#string) |  |  |
 
 
 

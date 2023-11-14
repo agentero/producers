@@ -44,6 +44,18 @@ message Producer {
   string agency_name = 5;
   // The licenses of the producer.
   repeated License licenses = 6;
+
+  message Biographic {
+    string last_name = 1;
+    string first_name = 2;
+    string middle_name = 3;
+    string date_of_birth = 4;
+    string ssn = 6;
+    string fein = 7;
+    string company_name = 8;
+    string state_domicile = 9;
+  }
+  Biographic biographic = 7;
 }
 
 enum LineOfAuthority {
@@ -75,6 +87,7 @@ message License {
   google.protobuf.Timestamp expiration_date = 6;
   google.protobuf.Timestamp updated_at = 7;
 }
+
 
 // Representation of a producer that we want to add.
 message NewProducer {
