@@ -61,11 +61,3 @@ Paths for the REST proxy of the gRPC interface can be found [here](https://githu
 {{end}}
 {{end}}
 {{end}}
-
-## Scalar Value Types
-
-| .proto Type | Notes | C++ | Java | Python | Go | C# | PHP | Ruby |
-| ----------- | ----- | --- | ---- | ------ | -- | -- | --- | ---- |
-{{range .Scalars -}}
-| <div id="{{.ProtoType}}" />`{{.ProtoType}}` | {{.Notes}} | `{{.CppType}}` | `{{.JavaType}}` | `{{.PythonType}}` | `{{.GoType}}` | `{{.CSharp}}` | `{{.PhpType}}` | `{{.RubyType}}` |
-{{end}}
