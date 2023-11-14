@@ -6,7 +6,7 @@ import "google/protobuf/timestamp.proto";
 
 option go_package = "github.com/agentero/producers";
 
-// ProducerService defines the API for managing producers.
+// Manages producers and their compliance information.
 service ProducerService {
   // Return the list of new producers of an Agency. A producer is considered
   // new if:
@@ -28,6 +28,22 @@ service ProducerService {
   // NewProducers does the same as NewProducer but accepts a list of producers
   // to onboard.
   rpc NewProducers(NewProducersRequest) returns (google.protobuf.Empty);
+}
+
+// Producer represents a producer that has been onboarded.
+message Producer {
+  // Internal ID of the producer.
+  string id = 1;
+  // The name of the producer.
+  string name = 2;
+  // The email of the producer.
+  string email = 3;
+  // The NPN of the producer. This is used to retrieve the license information
+  // of the producer from the NIPR API.
+  string npn = 4;
+  string agency_name = 5;
+  // The licenses of the producer.
+  repeated License licenses = 6;
 }
 
 enum LineOfAuthority {
@@ -60,27 +76,44 @@ message License {
   google.protobuf.Timestamp updated_at = 7;
 }
 
-// Producer represents a producer that has been onboarded.
-message Producer {
-  // Internal ID of the producer.
-  string id = 1;
-  // The name of the producer.
-  string name = 2;
-  // The email of the producer.
-  string email = 3;
-  // The NPN of the producer. This is used to retrieve the license information
-  // of the producer from the NIPR API.
-  string npn = 4;
-  string agency_name = 5;
-  // The licenses of the producer.
-  repeated License licenses = 6;
-}
-// NewProducer is a Producer that has not been processed yet.
+// Representation of a producer that we want to add.
 message NewProducer {
-  string npn = 1;
-  string name = 2;
-  string email = 3;
+  // The type of lookup to perform to retrieve the license information of the
+  // producer.
+  oneof lookup_method {
+    NPNLookup npn_lookup = 1;
+    AgencyLookup agency_lookup = 2;
+    LicenseLookup license_lookup = 3;
+    SSNLookup ssn_lookup = 4;
+  }
+  // The name of the producer. Not required.
+  string name = 5;
+  // The email of the producer. Not required.
+  string email = 6;
 }
+
+// Producer lookup by NPN.
+message NPNLookup {
+  string npn = 1;
+}
+
+// Producer lookup by the agency's tax number.
+message AgencyLookup {
+  string tax_number = 1;
+}
+
+// Producer lookup by license number and state.
+message LicenseLookup {
+  string license_number = 1;
+  string state = 2;
+}
+
+// Producer lookup with a matching tax number and last name.
+message SSNLookup {
+  string tax_number = 1;
+  string last_name = 2;
+}
+
 // Request to list new producers for an Agency.
 message ListNewProducersRequest {
   optional string agency_name = 1;

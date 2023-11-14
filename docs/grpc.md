@@ -9,7 +9,7 @@ Paths for the REST proxy of the gRPC interface can be found [here](https://githu
 
 
 ## producer.ProducerService
-ProducerService defines the API for managing producers.
+Manages producers and their compliance information.
 
 ### Methods
 #### ListNewProducers
@@ -57,6 +57,18 @@ NewProducers does the same as NewProducer but accepts a list of producers to onb
 
 ### Messages
 
+#### <div id="producer.AgencyLookup">AgencyLookup</div>
+Producer lookup by the agency's tax number.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| `tax_number` | [`string`](#string) |  |  |
+
+
+
+
+
 #### <div id="producer.License">License</div>
 
 
@@ -70,6 +82,19 @@ NewProducers does the same as NewProducer but accepts a list of producers to onb
 | `status` | [`License.LicenseStatus`](#producer.License.LicenseStatus) |  |  |
 | `expiration_date` | [`google.protobuf.Timestamp`](#google.protobuf.Timestamp) |  |  |
 | `updated_at` | [`google.protobuf.Timestamp`](#google.protobuf.Timestamp) |  |  |
+
+
+
+
+
+#### <div id="producer.LicenseLookup">LicenseLookup</div>
+Producer lookup by license number and state.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| `license_number` | [`string`](#string) |  |  |
+| `state` | [`string`](#string) |  |  |
 
 
 
@@ -136,15 +161,30 @@ Request to mark a list of producers as processed.
 
 
 
-#### <div id="producer.NewProducer">NewProducer</div>
-NewProducer is a Producer that has not been processed yet.
+#### <div id="producer.NPNLookup">NPNLookup</div>
+Producer lookup by NPN.
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | `npn` | [`string`](#string) |  |  |
-| `name` | [`string`](#string) |  |  |
-| `email` | [`string`](#string) |  |  |
+
+
+
+
+
+#### <div id="producer.NewProducer">NewProducer</div>
+Representation of a producer that we want to add.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| `npn_lookup` | [`NPNLookup`](#producer.NPNLookup) |  |  |
+| `agency_lookup` | [`AgencyLookup`](#producer.AgencyLookup) |  |  |
+| `license_lookup` | [`LicenseLookup`](#producer.LicenseLookup) |  |  |
+| `ssn_lookup` | [`SSNLookup`](#producer.SSNLookup) |  |  |
+| `name` | [`string`](#string) |  | The name of the producer. Not required. |
+| `email` | [`string`](#string) |  | The email of the producer. Not required. |
 
 
 
@@ -196,6 +236,19 @@ Producer represents a producer that has been onboarded.
 | `npn` | [`string`](#string) |  | The NPN of the producer. This is used to retrieve the license information of the producer from the NIPR API. |
 | `agency_name` | [`string`](#string) |  |  |
 | `licenses` | [`License`](#producer.License) | repeated | The licenses of the producer. |
+
+
+
+
+
+#### <div id="producer.SSNLookup">SSNLookup</div>
+Producer lookup with a matching tax number and last name.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| `tax_number` | [`string`](#string) |  |  |
+| `last_name` | [`string`](#string) |  |  |
 
 
 
