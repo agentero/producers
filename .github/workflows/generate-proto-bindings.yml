@@ -1,0 +1,82 @@
+name: Makefile CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+    paths:
+      - '**.proto'
+      - '.github/workflows/generate-proto-bindings.yml'
+
+permissions:
+  contents: write
+  pull-requests: write
+
+env:
+  PROTOC_VERSION: '25.0'
+  PROTOC_GENDOC_VERSION: '1.5.1'
+  PROTOC_GO_VERSION: '1.31.0'
+  PROTOC_GRPC_GATEWAY_VERSION: '2.18.1'
+
+jobs:
+  generate-all:
+    name: "Regenerate Go bindings and proto documentation"
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Install Protoc Binary"
+        uses: supplypike/setup-bin@v3
+        with:
+          uri: "https://github.com/protocolbuffers/protobuf/releases/download/v${{ env.PROTOC_VERSION }}/protoc-${{ env.PROTOC_VERSION }}-linux-x86_64.zip"
+          name: 'protoc'
+          subPath: 'bin'
+          version: ${{ env.PROTOC_VERSION }}
+
+      - name: "Install Protoc Gen Doc"
+        uses: supplypike/setup-bin@v3
+        with:
+          uri: "https://github.com/pseudomuto/protoc-gen-doc/releases/download/v${{ env.PROTOC_GENDOC_VERSION }}/protoc-gen-doc_${{ env.PROTOC_GENDOC_VERSION }}_linux_amd64.tar.gz"
+          name: 'protoc-gen-doc'
+          version: ${{ env.PROTOC_GENDOC_VERSION }}
+
+      - name: "Install Protoc Go Binary"
+        uses: supplypike/setup-bin@v3
+        with:
+          uri: "https://github.com/protocolbuffers/protobuf-go/releases/download/v${{ env.PROTOC_GO_VERSION }}/protoc-gen-go.v${{ env.PROTOC_GO_VERSION }}.linux.amd64.tar.gz"
+          name: 'protoc-gen-go'
+          version: ${{ env.PROTOC_GO_VERSION }}
+
+      - name: "Install Go"
+        uses: actions/setup-go@v4
+
+      - name: "Install Protoc Gen Go GRPC"
+        run: go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
+
+      - name: "Install Protoc Gen GRPC Gateway"
+        uses: supplypike/setup-bin@v3
+        with:
+          uri: "https://github.com/grpc-ecosystem/grpc-gateway/releases/download/v${{ env.PROTOC_GRPC_GATEWAY_VERSION }}/protoc-gen-grpc-gateway-v${{ env.PROTOC_GRPC_GATEWAY_VERSION }}-linux-x86_64"
+          name: 'protoc-gen-grpc-gateway'
+          version: ${{ env.PROTOC_GRPC_GATEWAY_VERSION }}
+
+      - name: Checkout repo
+        uses: actions/checkout@v3
+        with:
+          token: ${{ github.token }}
+          fetch-depth: 0
+          ref: ${{ github.head_ref }}
+
+      - name: Run make all
+        run: make all
+
+      - name: Commit changes
+        run: |
+          git pull origin ${{ github.head_ref }}
+          git status
+          git config --global user.name github-actions
+          git config --global user.email "github-actions@github.com"
+          git add .
+          if ! git diff-index --quiet HEAD; then
+            git commit -m "chore: regenerate Go bindings and docs"
+            git push origin ${{ github.head_ref }}
+          fi
