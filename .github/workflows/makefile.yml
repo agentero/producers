@@ -33,7 +33,7 @@ jobs:
           uri: "https://github.com/pseudomuto/protoc-gen-doc/releases/download/v${{ env.PROTOC_GENDOC_VERSION }}/protoc-gen-doc_${{ env.PROTOC_GENDOC_VERSION }}_linux_amd64.tar.gz"
           name: 'protoc-gen-doc'
           version: ${{ env.PROTOC_GENDOC_VERSION }}
-      - name: "Install Protoc JS Binary"
+      - name: "Install Protoc Go Binary"
         uses: supplypike/setup-bin@v3
         with:
           uri: "https://github.com/protocolbuffers/protobuf-go/releases/download/v${{ env.PROTOC_GO_VERSION }}/protobuf-gen-go.v${{ env.PROTOC_GO_VERSION }}.linux.amd64.tar.gz"
