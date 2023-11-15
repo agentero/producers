@@ -22,82 +22,6 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-<<<<<<< HEAD
-// This is a compile-time assertion that a sufficiently up-to-date version
-// of the legacy proto package is being used.
-const _ = proto.ProtoPackageIsVersion4
-=======
-type LineOfAuthority int32
-
-const (
-	LineOfAuthority_LINE_OF_AUTHORITY_UNSPECIFIED           LineOfAuthority = 0
-	LineOfAuthority_LINE_OF_AUTHORITY_LIFE                  LineOfAuthority = 1
-	LineOfAuthority_LINE_OF_AUTHORITY_PERSONAL              LineOfAuthority = 2
-	LineOfAuthority_LINE_OF_AUTHORITY_PERSONAL_AUTO         LineOfAuthority = 3
-	LineOfAuthority_LINE_OF_AUTHORITY_PROPERTY_AND_CASUALTY LineOfAuthority = 4
-	LineOfAuthority_LINE_OF_AUTHORITY_HEALTH                LineOfAuthority = 5
-	LineOfAuthority_LINE_OF_AUTHORITY_COMMERCIAL            LineOfAuthority = 6
-	LineOfAuthority_LINE_OF_AUTHORITY_LIMITED_COMMERCIAL    LineOfAuthority = 7
-	LineOfAuthority_LINE_OF_AUTHORITY_SURPLUS_LINES         LineOfAuthority = 8
-	LineOfAuthority_LINE_OF_AUTHORITY_OTHER                 LineOfAuthority = 9
-)
-
-// Enum value maps for LineOfAuthority.
-var (
-	LineOfAuthority_name = map[int32]string{
-		0: "LINE_OF_AUTHORITY_UNSPECIFIED",
-		1: "LINE_OF_AUTHORITY_LIFE",
-		2: "LINE_OF_AUTHORITY_PERSONAL",
-		3: "LINE_OF_AUTHORITY_PERSONAL_AUTO",
-		4: "LINE_OF_AUTHORITY_PROPERTY_AND_CASUALTY",
-		5: "LINE_OF_AUTHORITY_HEALTH",
-		6: "LINE_OF_AUTHORITY_COMMERCIAL",
-		7: "LINE_OF_AUTHORITY_LIMITED_COMMERCIAL",
-		8: "LINE_OF_AUTHORITY_SURPLUS_LINES",
-		9: "LINE_OF_AUTHORITY_OTHER",
-	}
-	LineOfAuthority_value = map[string]int32{
-		"LINE_OF_AUTHORITY_UNSPECIFIED":           0,
-		"LINE_OF_AUTHORITY_LIFE":                  1,
-		"LINE_OF_AUTHORITY_PERSONAL":              2,
-		"LINE_OF_AUTHORITY_PERSONAL_AUTO":         3,
-		"LINE_OF_AUTHORITY_PROPERTY_AND_CASUALTY": 4,
-		"LINE_OF_AUTHORITY_HEALTH":                5,
-		"LINE_OF_AUTHORITY_COMMERCIAL":            6,
-		"LINE_OF_AUTHORITY_LIMITED_COMMERCIAL":    7,
-		"LINE_OF_AUTHORITY_SURPLUS_LINES":         8,
-		"LINE_OF_AUTHORITY_OTHER":                 9,
-	}
-)
-
-func (x LineOfAuthority) Enum() *LineOfAuthority {
-	p := new(LineOfAuthority)
-	*p = x
-	return p
-}
-
-func (x LineOfAuthority) String() string {
-	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
-}
-
-func (LineOfAuthority) Descriptor() protoreflect.EnumDescriptor {
-	return file_producer_proto_enumTypes[0].Descriptor()
-}
-
-func (LineOfAuthority) Type() protoreflect.EnumType {
-	return &file_producer_proto_enumTypes[0]
-}
-
-func (x LineOfAuthority) Number() protoreflect.EnumNumber {
-	return protoreflect.EnumNumber(x)
-}
-
-// Deprecated: Use LineOfAuthority.Descriptor instead.
-func (LineOfAuthority) EnumDescriptor() ([]byte, []int) {
-	return file_producer_proto_rawDescGZIP(), []int{0}
-}
->>>>>>> 8e40655 (chore: regenerate Go bindings and docs)
-
 type License_LicenseStatus int32
 
 const (
@@ -377,6 +301,7 @@ type NewProducer struct {
 	// producer.
 	//
 	// Types that are assignable to LookupMethod:
+	//
 	//	*NewProducer_NpnLookup
 	//	*NewProducer_AgencyLookup
 	//	*NewProducer_LicenseLookup
