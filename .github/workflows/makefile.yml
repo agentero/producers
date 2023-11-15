@@ -52,7 +52,7 @@ jobs:
       - name: "Install Protoc Gen GRPC Gateway"
         uses: supplypike/setup-bin@v3
         with:
-          uri: "https://github.com/grpc-ecosystem/grpc-gateway/releases/download/v{{ env.PROTOC_GRPC_GATEWAY_VERSION }}/protoc-gen-grpc-gateway-v{{ env.PROTOC_GRPC_GATEWAY_VERSION }}-linux-x86_64"
+          uri: "https://github.com/grpc-ecosystem/grpc-gateway/releases/download/v${{ env.PROTOC_GRPC_GATEWAY_VERSION }}/protoc-gen-grpc-gateway-v${{ env.PROTOC_GRPC_GATEWAY_VERSION }}-linux-x86_64"
           name: 'protoc-gen-grpc-gateway'
           version: ${{ env.PROTOC_GRPC_GATEWAY_VERSION }}
 
