@@ -31,7 +31,6 @@ jobs:
         with:
           uri: "https://github.com/pseudomuto/protoc-gen-doc/releases/download/v${{ env.PROTOC_GENDOC_VERSION }}/protoc-gen-doc_${{ env.PROTOC_GENDOC_VERSION }}_linux_amd64.tar.gz"
           name: 'protoc-gen-doc'
-          subPath: 'bin'
           version: ${{ env.PROTOC_GENDOC_VERSION }}
 
       - name: Checkout repo
