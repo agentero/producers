@@ -14,6 +14,7 @@ env:
   PROTOC_VERSION: '25.0'
   PROTOC_GENDOC_VERSION: '1.5.1'
   PROTOC_GO_VERSION: '1.31.0'
+  PROTOC_GRPC_GATEWAY_VERSION: '2.18.1'
 
 jobs:
   generate-all:
@@ -47,6 +48,13 @@ jobs:
 
       - name: "Install Protoc Gen Go GRPC"
         run: go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest
+
+      - name: "Install Protoc Gen GRPC Gateway"
+        uses: supplypike/setup-bin@v3
+        with:
+          uri: "https://github.com/grpc-ecosystem/grpc-gateway/releases/download/v{{ env.PROTOC_GRPC_GATEWAY_VERSION }}/protoc-gen-grpc-gateway-v{{ env.PROTOC_GRPC_GATEWAY_VERSION }}-linux-x86_64"
+          name: 'protoc-gen-grpc-gateway'
+          version: ${{ env.PROTOC_GRPC_GATEWAY_VERSION }}
 
       - name: Checkout repo
         uses: actions/checkout@v3
