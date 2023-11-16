@@ -1,0 +1,22 @@
+version: v1
+plugins:
+  - name: go
+    out: ./go
+    opt:
+      - paths=source_relative
+  - name: go-grpc
+    out: ./go
+    opt:
+      - paths=source_relative
+  - name: grpc-gateway
+    out: ./go
+    opt:
+     - logtostderr=true
+     - paths=source_relative
+     - generate_unbound_methods=true
+  - name: openapiv2
+    out: ./docs
+    opt:
+      - logtostderr=true
+      - generate_unbound_methods=true
+   

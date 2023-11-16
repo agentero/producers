@@ -1,0 +1,14 @@
+version: v1
+name: github.com/agentero/producers
+deps:
+  - buf.build/googleapis/googleapis
+build:
+  excludes:
+    - google
+
+breaking:
+  use:
+    - FILE
+lint:
+  use:
+    - DEFAULT
