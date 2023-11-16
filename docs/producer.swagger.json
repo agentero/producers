@@ -1,0 +1,599 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "producer.proto",
+    "version": "version not set"
+  },
+  "tags": [
+    {
+      "name": "ProducerService"
+    }
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/producer.ProducerService/ListNewProducers": {
+      "post": {
+        "summary": "Return the list of new producers of an Agency. A producer is considered\nnew if:\n1. It is not in the list of processed producers.\n2. Since its creation, it has not been updated.",
+        "operationId": "ProducerService_ListNewProducers",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/producerListNewProducersResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "description": "Request to list new producers for an Agency.",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/producerListNewProducersRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ProducerService"
+        ]
+      }
+    },
+    "/producer.ProducerService/ListUpdatedProducers": {
+      "post": {
+        "summary": "Return the list of updated producers of an Agency. A producer is considered\nupdated if:\n1. It is not in the list of processed producers.\n2. Since its creation, it has been updated.",
+        "operationId": "ProducerService_ListUpdatedProducers",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/producerListUpdatedProducersResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "description": "Request to list updated producers for an Agency.",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/producerListUpdatedProducersRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ProducerService"
+        ]
+      }
+    },
+    "/producer.ProducerService/MarkAsProcessed": {
+      "post": {
+        "summary": "Mark a list of producers as processed, so they will not be returned\nin future calls to ListNewProducers or ListUpdatedProducers.",
+        "operationId": "ProducerService_MarkAsProcessed",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "description": "Request to mark a list of producers as processed.",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/producerMarkAsProcessedRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ProducerService"
+        ]
+      }
+    },
+    "/producer.ProducerService/NewProducer": {
+      "post": {
+        "summary": "NewProducer starts the onboarding process for the given producer.",
+        "operationId": "ProducerService_NewProducer",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "description": "Request to onboard a new producer and automatically associate it \nwith an Agency.\nThis will trigger a call to the NIPR API to retrieve license information \nof the producer.",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/producerNewProducerRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ProducerService"
+        ]
+      }
+    },
+    "/producer.ProducerService/NewProducers": {
+      "post": {
+        "summary": "NewProducers does the same as NewProducer but accepts a list of producers\nto onboard.",
+        "operationId": "ProducerService_NewProducers",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "type": "object",
+              "properties": {}
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "description": "Request to onboard a list of producers and automatically associate them \nwith an Agency.\nThis will trigger a call to the NIPR API to retrieve license information of \nevery producer in the list.",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/producerNewProducersRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ProducerService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "LicenseLicenseStatus": {
+      "type": "string",
+      "enum": [
+        "LICENSE_STATUS_UNSPECIFIED",
+        "LICENSE_STATUS_EXPIRED",
+        "LICENSE_STATUS_VALID",
+        "LICENSE_STATUS_NOT_ACTIVE"
+      ],
+      "default": "LICENSE_STATUS_UNSPECIFIED"
+    },
+    "ProducerAppointment": {
+      "type": "object",
+      "properties": {
+        "branchId": {
+          "type": "string"
+        },
+        "companyName": {
+          "type": "string"
+        },
+        "fein": {
+          "type": "string"
+        },
+        "coCode": {
+          "type": "string"
+        },
+        "lineOfAuthority": {
+          "type": "string"
+        },
+        "loaCode": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "terminationReason": {
+          "type": "string"
+        },
+        "statusReasonDate": {
+          "type": "string"
+        },
+        "appointmentRenewalDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "agencyAffiliations": {
+          "type": "string"
+        }
+      }
+    },
+    "ProducerBiographic": {
+      "type": "object",
+      "properties": {
+        "lastName": {
+          "type": "string"
+        },
+        "firstName": {
+          "type": "string"
+        },
+        "middleName": {
+          "type": "string"
+        },
+        "dateOfBirth": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "ssn": {
+          "type": "string"
+        },
+        "fein": {
+          "type": "string"
+        },
+        "companyName": {
+          "type": "string"
+        },
+        "stateDomicile": {
+          "type": "string"
+        }
+      },
+      "description": "Biographic information of the producer."
+    },
+    "ProducerProducerRegulatoryInfo": {
+      "type": "object",
+      "properties": {
+        "regulatoryActionsByState": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/ProducerRegulatoryInfoRegulatoryAction"
+          },
+          "description": "Regulatory actions by state, if any."
+        },
+        "clearanceCertificationInfo": {
+          "type": "string"
+        },
+        "nasdExamDetails": {
+          "type": "string"
+        }
+      },
+      "description": "ProducerRegulatoryInfo contains regulatory information about a producer."
+    },
+    "ProducerRegulatoryInfoRegulatoryAction": {
+      "type": "object",
+      "properties": {
+        "actionId": {
+          "type": "string"
+        },
+        "originOfAction": {
+          "type": "string"
+        },
+        "reasonForAction": {
+          "type": "string"
+        },
+        "disposition": {
+          "type": "string"
+        },
+        "dateOfAction": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "effectiveDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "enterDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "fileRef": {
+          "type": "string"
+        },
+        "penaltyFineForfeiture": {
+          "type": "string"
+        },
+        "lengthOfOrder": {
+          "type": "string"
+        }
+      }
+    },
+    "producerAgencyLookup": {
+      "type": "object",
+      "properties": {
+        "taxNumber": {
+          "type": "string"
+        }
+      },
+      "description": "Producer lookup by the agency's tax number."
+    },
+    "producerLicense": {
+      "type": "object",
+      "properties": {
+        "licenseNumber": {
+          "type": "string"
+        },
+        "licenseState": {
+          "type": "string"
+        },
+        "residencyStatus": {
+          "type": "string"
+        },
+        "active": {
+          "type": "boolean"
+        },
+        "status": {
+          "$ref": "#/definitions/LicenseLicenseStatus"
+        },
+        "expirationDate": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "description": "Producers license information and status."
+    },
+    "producerLicenseLookup": {
+      "type": "object",
+      "properties": {
+        "licenseNumber": {
+          "type": "string"
+        },
+        "state": {
+          "type": "string"
+        }
+      },
+      "description": "Producer lookup by license number and state."
+    },
+    "producerListNewProducersRequest": {
+      "type": "object",
+      "properties": {
+        "agencyName": {
+          "type": "string"
+        }
+      },
+      "description": "Request to list new producers for an Agency."
+    },
+    "producerListNewProducersResponse": {
+      "type": "object",
+      "properties": {
+        "newProducers": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/producerProducer"
+          }
+        }
+      },
+      "description": "Response containing a list of new producers for an Agency."
+    },
+    "producerListUpdatedProducersRequest": {
+      "type": "object",
+      "properties": {
+        "agencyName": {
+          "type": "string"
+        }
+      },
+      "description": "Request to list updated producers for an Agency."
+    },
+    "producerListUpdatedProducersResponse": {
+      "type": "object",
+      "properties": {
+        "updatedProducers": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/producerProducer"
+          }
+        }
+      },
+      "description": "Response containing a list of updated producers for an Agency."
+    },
+    "producerMarkAsProcessedRequest": {
+      "type": "object",
+      "properties": {
+        "agencyName": {
+          "type": "string"
+        },
+        "producerIds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "description": "Request to mark a list of producers as processed."
+    },
+    "producerNPNLookup": {
+      "type": "object",
+      "properties": {
+        "npn": {
+          "type": "string"
+        }
+      },
+      "description": "Producer lookup by NPN."
+    },
+    "producerNewProducer": {
+      "type": "object",
+      "properties": {
+        "npnLookup": {
+          "$ref": "#/definitions/producerNPNLookup"
+        },
+        "agencyLookup": {
+          "$ref": "#/definitions/producerAgencyLookup"
+        },
+        "licenseLookup": {
+          "$ref": "#/definitions/producerLicenseLookup"
+        },
+        "ssnLookup": {
+          "$ref": "#/definitions/producerSSNLookup"
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the producer. Not required."
+        },
+        "email": {
+          "type": "string",
+          "description": "The email of the producer. Not required."
+        }
+      },
+      "description": "Representation of a producer that we want to add."
+    },
+    "producerNewProducerRequest": {
+      "type": "object",
+      "properties": {
+        "agencyName": {
+          "type": "string"
+        },
+        "agencyFein": {
+          "type": "string"
+        },
+        "producer": {
+          "$ref": "#/definitions/producerNewProducer"
+        }
+      },
+      "description": "Request to onboard a new producer and automatically associate it \nwith an Agency.\nThis will trigger a call to the NIPR API to retrieve license information \nof the producer."
+    },
+    "producerNewProducersRequest": {
+      "type": "object",
+      "properties": {
+        "agencyName": {
+          "type": "string"
+        },
+        "agencyFein": {
+          "type": "string"
+        },
+        "producers": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/producerNewProducer"
+          }
+        }
+      },
+      "description": "Request to onboard a list of producers and automatically associate them \nwith an Agency.\nThis will trigger a call to the NIPR API to retrieve license information of \nevery producer in the list."
+    },
+    "producerProducer": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Internal ID of the producer."
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the producer."
+        },
+        "email": {
+          "type": "string",
+          "description": "The email of the producer."
+        },
+        "npn": {
+          "type": "string",
+          "description": "The NPN of the producer. This is used to retrieve the license information\nof the producer from the NIPR API."
+        },
+        "agencyName": {
+          "type": "string"
+        },
+        "licenses": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/producerLicense"
+          },
+          "description": "The licenses of the producer."
+        },
+        "biographic": {
+          "$ref": "#/definitions/ProducerBiographic",
+          "description": "Biographic information of the producer."
+        },
+        "regulatoryInfo": {
+          "$ref": "#/definitions/ProducerProducerRegulatoryInfo",
+          "description": "Producer's regulatory information."
+        },
+        "appointments": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/ProducerAppointment"
+          },
+          "description": "The list of carrier appointments of the producer."
+        }
+      },
+      "description": "Producer represents a producer that has been onboarded."
+    },
+    "producerSSNLookup": {
+      "type": "object",
+      "properties": {
+        "taxNumber": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        }
+      },
+      "description": "Producer lookup with a matching tax number and last name."
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    }
+  }
+}
