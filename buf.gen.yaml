@@ -15,8 +15,7 @@ plugins:
      - paths=source_relative
      - generate_unbound_methods=true
   - name: openapiv2
-    out: ./docs
+    out: ./docs/openapi
     opt:
       - logtostderr=true
       - generate_unbound_methods=true
-   

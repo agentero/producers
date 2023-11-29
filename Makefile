@@ -13,8 +13,14 @@ markdown-docs: ## Generates markdown docs
 		--doc_out='./docs' \
 		proto/producer.proto
 
+.PHONY: html-docs
+html-docs: ## Generates html docs
+	protoc --doc_out=./docs/proto \
+		--doc_opt=html,index.html \
+		proto/producer.proto
+
 .PHONY: all
-all: go-bindings markdown-docs
+all: go-bindings markdown-docs html-docs ## Generates all
 
 .PHONY: help
 help: ## Shows help
