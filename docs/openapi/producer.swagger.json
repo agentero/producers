@@ -16,6 +16,73 @@
     "application/json"
   ],
   "paths": {
+    "/producer.ProducerService/GetAgencyProducers": {
+      "post": {
+        "summary": "GetAgencyProducer returns the list of producers of an agency.",
+        "operationId": "ProducerService_GetAgencyProducers",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/producerGetAgencyProducesResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/producerGetAgencyProducersRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ProducerService"
+        ]
+      }
+    },
+    "/producer.ProducerService/GetProducer": {
+      "post": {
+        "summary": "GetProducer returns a producer with the given ID.",
+        "operationId": "ProducerService_GetProducer",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/producerGetProducerResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "description": "Request to retrieve a producer.",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/producerGetProducerRequest"
+            }
+          }
+        ],
+        "tags": [
+          "ProducerService"
+        ]
+      }
+    },
     "/producer.ProducerService/ListNewProducers": {
       "post": {
         "summary": "Return the list of new producers of an Agency. A producer is considered\nnew if:\n1. It is not in the list of processed producers.\n2. Since its creation, it has not been updated.",
@@ -191,6 +258,30 @@
     }
   },
   "definitions": {
+    "GetProducerRequestEmailLookup": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        }
+      }
+    },
+    "GetProducerRequestProducerIDLookup": {
+      "type": "object",
+      "properties": {
+        "producerId": {
+          "type": "string"
+        }
+      }
+    },
+    "GetProducerRequestProducerNPNLookup": {
+      "type": "object",
+      "properties": {
+        "producerNpn": {
+          "type": "string"
+        }
+      }
+    },
     "LicenseLicenseStatus": {
       "type": "string",
       "enum": [
@@ -336,6 +427,50 @@
         }
       },
       "description": "Producer lookup by the agency's tax number."
+    },
+    "producerGetAgencyProducersRequest": {
+      "type": "object",
+      "properties": {
+        "agencyName": {
+          "type": "string"
+        }
+      }
+    },
+    "producerGetAgencyProducesResponse": {
+      "type": "object",
+      "properties": {
+        "producers": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/producerProducer"
+          }
+        }
+      }
+    },
+    "producerGetProducerRequest": {
+      "type": "object",
+      "properties": {
+        "producerIdLookup": {
+          "$ref": "#/definitions/GetProducerRequestProducerIDLookup"
+        },
+        "npnLookup": {
+          "$ref": "#/definitions/GetProducerRequestProducerNPNLookup"
+        },
+        "emailLookup": {
+          "$ref": "#/definitions/GetProducerRequestEmailLookup"
+        }
+      },
+      "description": "Request to retrieve a producer."
+    },
+    "producerGetProducerResponse": {
+      "type": "object",
+      "properties": {
+        "producer": {
+          "$ref": "#/definitions/producerProducer"
+        }
+      },
+      "description": "Response containing a producer."
     },
     "producerLicense": {
       "type": "object",

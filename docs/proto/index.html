@@ -183,6 +183,34 @@
                 </li>
               
                 <li>
+                  <a href="#producer.GetAgencyProducersRequest"><span class="badge">M</span>GetAgencyProducersRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#producer.GetAgencyProducesResponse"><span class="badge">M</span>GetAgencyProducesResponse</a>
+                </li>
+              
+                <li>
+                  <a href="#producer.GetProducerRequest"><span class="badge">M</span>GetProducerRequest</a>
+                </li>
+              
+                <li>
+                  <a href="#producer.GetProducerRequest.EmailLookup"><span class="badge">M</span>GetProducerRequest.EmailLookup</a>
+                </li>
+              
+                <li>
+                  <a href="#producer.GetProducerRequest.ProducerIDLookup"><span class="badge">M</span>GetProducerRequest.ProducerIDLookup</a>
+                </li>
+              
+                <li>
+                  <a href="#producer.GetProducerRequest.ProducerNPNLookup"><span class="badge">M</span>GetProducerRequest.ProducerNPNLookup</a>
+                </li>
+              
+                <li>
+                  <a href="#producer.GetProducerResponse"><span class="badge">M</span>GetProducerResponse</a>
+                </li>
+              
+                <li>
                   <a href="#producer.License"><span class="badge">M</span>License</a>
                 </li>
               
@@ -293,6 +321,188 @@
                 <tr>
                   <td>tax_number</td>
                   <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="producer.GetAgencyProducersRequest">GetAgencyProducersRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>agency_name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="producer.GetAgencyProducesResponse">GetAgencyProducesResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>producers</td>
+                  <td><a href="#producer.Producer">Producer</a></td>
+                  <td>repeated</td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="producer.GetProducerRequest">GetProducerRequest</h3>
+        <p>Request to retrieve a producer.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>producer_id_lookup</td>
+                  <td><a href="#producer.GetProducerRequest.ProducerIDLookup">GetProducerRequest.ProducerIDLookup</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>npn_lookup</td>
+                  <td><a href="#producer.GetProducerRequest.ProducerNPNLookup">GetProducerRequest.ProducerNPNLookup</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>email_lookup</td>
+                  <td><a href="#producer.GetProducerRequest.EmailLookup">GetProducerRequest.EmailLookup</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="producer.GetProducerRequest.EmailLookup">GetProducerRequest.EmailLookup</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>email</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="producer.GetProducerRequest.ProducerIDLookup">GetProducerRequest.ProducerIDLookup</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>producer_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="producer.GetProducerRequest.ProducerNPNLookup">GetProducerRequest.ProducerNPNLookup</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>producer_npn</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="producer.GetProducerResponse">GetProducerResponse</h3>
+        <p>Response containing a producer.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>producer</td>
+                  <td><a href="#producer.Producer">Producer</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>
@@ -1170,6 +1380,20 @@ of the producer from the NIPR API. </p></td>
             <tr><td>Method Name</td><td>Request Type</td><td>Response Type</td><td>Description</td></tr>
           </thead>
           <tbody>
+            
+              <tr>
+                <td>GetAgencyProducers</td>
+                <td><a href="#producer.GetAgencyProducersRequest">GetAgencyProducersRequest</a></td>
+                <td><a href="#producer.GetAgencyProducesResponse">GetAgencyProducesResponse</a></td>
+                <td><p>GetAgencyProducer returns the list of producers of an agency.</p></td>
+              </tr>
+            
+              <tr>
+                <td>GetProducer</td>
+                <td><a href="#producer.GetProducerRequest">GetProducerRequest</a></td>
+                <td><a href="#producer.GetProducerResponse">GetProducerResponse</a></td>
+                <td><p>GetProducer returns a producer with the given ID.</p></td>
+              </tr>
             
               <tr>
                 <td>ListNewProducers</td>

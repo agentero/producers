@@ -8,6 +8,10 @@ option go_package = "github.com/agentero/producers";
 
 // Manages producers and their compliance information.
 service ProducerService {
+  // GetAgencyProducer returns the list of producers of an agency.
+  rpc GetAgencyProducers(GetAgencyProducersRequest) returns (GetAgencyProducesResponse);
+  // GetProducer returns a producer with the given ID.
+  rpc GetProducer(GetProducerRequest) returns (GetProducerResponse);
   // Return the list of new producers of an Agency. A producer is considered
   // new if:
   // 1. It is not in the list of processed producers.
@@ -198,4 +202,36 @@ message NewProducersRequest {
   string agency_name = 1;
   string agency_fein = 2;
   repeated NewProducer producers = 3;
+}
+
+// Request to retrieve a producer.
+message GetProducerRequest {
+  message ProducerIDLookup {
+    string producer_id = 1;
+  }
+  message ProducerNPNLookup {
+    string producer_npn = 1;
+  }
+
+  message EmailLookup {
+    string email = 1;
+  }
+  oneof lookup_method {
+    ProducerIDLookup producer_id_lookup = 1;
+    ProducerNPNLookup npn_lookup = 2;
+    EmailLookup email_lookup = 3;
+  }
+}
+
+// Response containing a producer.
+message GetProducerResponse {
+  Producer producer = 1;
+}
+
+message GetAgencyProducersRequest {
+  string agency_name = 1;
+}
+
+message GetAgencyProducesResponse {
+  repeated Producer producers = 1;
 }

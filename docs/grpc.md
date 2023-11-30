@@ -12,6 +12,22 @@ Paths for the REST proxy of the gRPC interface can be found [here](https://githu
 Manages producers and their compliance information.
 
 ### Methods
+#### GetAgencyProducers
+
+GetAgencyProducer returns the list of producers of an agency.
+
+| Request | Response |
+| ------- | -------- |
+| [`GetAgencyProducersRequest`](#producer.GetAgencyProducersRequest) | [`GetAgencyProducesResponse`](#producer.GetAgencyProducesResponse) |
+
+#### GetProducer
+
+GetProducer returns a producer with the given ID.
+
+| Request | Response |
+| ------- | -------- |
+| [`GetProducerRequest`](#producer.GetProducerRequest) | [`GetProducerResponse`](#producer.GetProducerResponse) |
+
 #### ListNewProducers
 
 Return the list of new producers of an Agency. A producer is considered new if: 1. It is not in the list of processed producers. 2. Since its creation, it has not been updated.
@@ -64,6 +80,92 @@ Producer lookup by the agency's tax number.
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | `tax_number` | [`string`](#string) |  |  |
+
+
+
+
+
+#### <div id="producer.GetAgencyProducersRequest">GetAgencyProducersRequest</div>
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| `agency_name` | [`string`](#string) |  |  |
+
+
+
+
+
+#### <div id="producer.GetAgencyProducesResponse">GetAgencyProducesResponse</div>
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| `producers` | [`Producer`](#producer.Producer) | repeated |  |
+
+
+
+
+
+#### <div id="producer.GetProducerRequest">GetProducerRequest</div>
+Request to retrieve a producer.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| `producer_id_lookup` | [`GetProducerRequest.ProducerIDLookup`](#producer.GetProducerRequest.ProducerIDLookup) |  |  |
+| `npn_lookup` | [`GetProducerRequest.ProducerNPNLookup`](#producer.GetProducerRequest.ProducerNPNLookup) |  |  |
+| `email_lookup` | [`GetProducerRequest.EmailLookup`](#producer.GetProducerRequest.EmailLookup) |  |  |
+
+
+
+
+
+#### <div id="producer.GetProducerRequest.EmailLookup">GetProducerRequest.EmailLookup</div>
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| `email` | [`string`](#string) |  |  |
+
+
+
+
+
+#### <div id="producer.GetProducerRequest.ProducerIDLookup">GetProducerRequest.ProducerIDLookup</div>
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| `producer_id` | [`string`](#string) |  |  |
+
+
+
+
+
+#### <div id="producer.GetProducerRequest.ProducerNPNLookup">GetProducerRequest.ProducerNPNLookup</div>
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| `producer_npn` | [`string`](#string) |  |  |
+
+
+
+
+
+#### <div id="producer.GetProducerResponse">GetProducerResponse</div>
+Response containing a producer.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| `producer` | [`Producer`](#producer.Producer) |  |  |
 
 
 

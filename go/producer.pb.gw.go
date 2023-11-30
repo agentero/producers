@@ -31,18 +31,83 @@ var _ = runtime.String
 var _ = utilities.NewDoubleArray
 var _ = metadata.Join
 
-var (
-	filter_ProducerService_ListNewProducers_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
-)
+func request_ProducerService_GetAgencyProducers_0(ctx context.Context, marshaler runtime.Marshaler, client ProducerServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq GetAgencyProducersRequest
+	var metadata runtime.ServerMetadata
+
+	newReader, berr := utilities.IOReaderFactory(req.Body)
+	if berr != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
+	}
+	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	msg, err := client.GetAgencyProducers(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+
+}
+
+func local_request_ProducerService_GetAgencyProducers_0(ctx context.Context, marshaler runtime.Marshaler, server ProducerServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq GetAgencyProducersRequest
+	var metadata runtime.ServerMetadata
+
+	newReader, berr := utilities.IOReaderFactory(req.Body)
+	if berr != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
+	}
+	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	msg, err := server.GetAgencyProducers(ctx, &protoReq)
+	return msg, metadata, err
+
+}
+
+func request_ProducerService_GetProducer_0(ctx context.Context, marshaler runtime.Marshaler, client ProducerServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq GetProducerRequest
+	var metadata runtime.ServerMetadata
+
+	newReader, berr := utilities.IOReaderFactory(req.Body)
+	if berr != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
+	}
+	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	msg, err := client.GetProducer(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	return msg, metadata, err
+
+}
+
+func local_request_ProducerService_GetProducer_0(ctx context.Context, marshaler runtime.Marshaler, server ProducerServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq GetProducerRequest
+	var metadata runtime.ServerMetadata
+
+	newReader, berr := utilities.IOReaderFactory(req.Body)
+	if berr != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
+	}
+	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	}
+
+	msg, err := server.GetProducer(ctx, &protoReq)
+	return msg, metadata, err
+
+}
 
 func request_ProducerService_ListNewProducers_0(ctx context.Context, marshaler runtime.Marshaler, client ProducerServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq ListNewProducersRequest
 	var metadata runtime.ServerMetadata
 
-	if err := req.ParseForm(); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	newReader, berr := utilities.IOReaderFactory(req.Body)
+	if berr != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_ProducerService_ListNewProducers_0); err != nil {
+	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -55,10 +120,11 @@ func local_request_ProducerService_ListNewProducers_0(ctx context.Context, marsh
 	var protoReq ListNewProducersRequest
 	var metadata runtime.ServerMetadata
 
-	if err := req.ParseForm(); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	newReader, berr := utilities.IOReaderFactory(req.Body)
+	if berr != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_ProducerService_ListNewProducers_0); err != nil {
+	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -67,18 +133,15 @@ func local_request_ProducerService_ListNewProducers_0(ctx context.Context, marsh
 
 }
 
-var (
-	filter_ProducerService_ListUpdatedProducers_0 = &utilities.DoubleArray{Encoding: map[string]int{}, Base: []int(nil), Check: []int(nil)}
-)
-
 func request_ProducerService_ListUpdatedProducers_0(ctx context.Context, marshaler runtime.Marshaler, client ProducerServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
 	var protoReq ListUpdatedProducersRequest
 	var metadata runtime.ServerMetadata
 
-	if err := req.ParseForm(); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	newReader, berr := utilities.IOReaderFactory(req.Body)
+	if berr != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_ProducerService_ListUpdatedProducers_0); err != nil {
+	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -91,10 +154,11 @@ func local_request_ProducerService_ListUpdatedProducers_0(ctx context.Context, m
 	var protoReq ListUpdatedProducersRequest
 	var metadata runtime.ServerMetadata
 
-	if err := req.ParseForm(); err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
+	newReader, berr := utilities.IOReaderFactory(req.Body)
+	if berr != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", berr)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_ProducerService_ListUpdatedProducers_0); err != nil {
+	if err := marshaler.NewDecoder(newReader()).Decode(&protoReq); err != nil && err != io.EOF {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
@@ -211,7 +275,7 @@ func local_request_ProducerService_NewProducers_0(ctx context.Context, marshaler
 // Note that using this registration option will cause many gRPC library features to stop working. Consider using RegisterProducerServiceHandlerFromEndpoint instead.
 func RegisterProducerServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux, server ProducerServiceServer) error {
 
-	mux.Handle("GET", pattern_ProducerService_ListNewProducers_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_ProducerService_GetAgencyProducers_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -219,7 +283,57 @@ func RegisterProducerServiceHandlerServer(ctx context.Context, mux *runtime.Serv
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/producer.ProducerService/ListNewProducers", runtime.WithHTTPPathPattern("/v1/producers/new"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/producer.ProducerService/GetAgencyProducers", runtime.WithHTTPPathPattern("/producer.ProducerService/GetAgencyProducers"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_ProducerService_GetAgencyProducers_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_ProducerService_GetAgencyProducers_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	mux.Handle("POST", pattern_ProducerService_GetProducer_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		var err error
+		var annotatedContext context.Context
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/producer.ProducerService/GetProducer", runtime.WithHTTPPathPattern("/producer.ProducerService/GetProducer"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := local_request_ProducerService_GetProducer_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_ProducerService_GetProducer_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	mux.Handle("POST", pattern_ProducerService_ListNewProducers_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		var stream runtime.ServerTransportStream
+		ctx = grpc.NewContextWithServerTransportStream(ctx, &stream)
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		var err error
+		var annotatedContext context.Context
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/producer.ProducerService/ListNewProducers", runtime.WithHTTPPathPattern("/producer.ProducerService/ListNewProducers"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -236,7 +350,7 @@ func RegisterProducerServiceHandlerServer(ctx context.Context, mux *runtime.Serv
 
 	})
 
-	mux.Handle("GET", pattern_ProducerService_ListUpdatedProducers_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_ProducerService_ListUpdatedProducers_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -244,7 +358,7 @@ func RegisterProducerServiceHandlerServer(ctx context.Context, mux *runtime.Serv
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/producer.ProducerService/ListUpdatedProducers", runtime.WithHTTPPathPattern("/v1/producers/updated"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/producer.ProducerService/ListUpdatedProducers", runtime.WithHTTPPathPattern("/producer.ProducerService/ListUpdatedProducers"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -269,7 +383,7 @@ func RegisterProducerServiceHandlerServer(ctx context.Context, mux *runtime.Serv
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/producer.ProducerService/MarkAsProcessed", runtime.WithHTTPPathPattern("/v1/producers/mark_as_processed"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/producer.ProducerService/MarkAsProcessed", runtime.WithHTTPPathPattern("/producer.ProducerService/MarkAsProcessed"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -294,7 +408,7 @@ func RegisterProducerServiceHandlerServer(ctx context.Context, mux *runtime.Serv
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/producer.ProducerService/NewProducer", runtime.WithHTTPPathPattern("/v1/producers/new"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/producer.ProducerService/NewProducer", runtime.WithHTTPPathPattern("/producer.ProducerService/NewProducer"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -319,7 +433,7 @@ func RegisterProducerServiceHandlerServer(ctx context.Context, mux *runtime.Serv
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/producer.ProducerService/NewProducers", runtime.WithHTTPPathPattern("/v1/producers/new_list"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/producer.ProducerService/NewProducers", runtime.WithHTTPPathPattern("/producer.ProducerService/NewProducers"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -377,13 +491,57 @@ func RegisterProducerServiceHandler(ctx context.Context, mux *runtime.ServeMux, 
 // "ProducerServiceClient" to call the correct interceptors.
 func RegisterProducerServiceHandlerClient(ctx context.Context, mux *runtime.ServeMux, client ProducerServiceClient) error {
 
-	mux.Handle("GET", pattern_ProducerService_ListNewProducers_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_ProducerService_GetAgencyProducers_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/producer.ProducerService/ListNewProducers", runtime.WithHTTPPathPattern("/v1/producers/new"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/producer.ProducerService/GetAgencyProducers", runtime.WithHTTPPathPattern("/producer.ProducerService/GetAgencyProducers"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_ProducerService_GetAgencyProducers_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_ProducerService_GetAgencyProducers_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	mux.Handle("POST", pattern_ProducerService_GetProducer_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		var err error
+		var annotatedContext context.Context
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/producer.ProducerService/GetProducer", runtime.WithHTTPPathPattern("/producer.ProducerService/GetProducer"))
+		if err != nil {
+			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
+			return
+		}
+		resp, md, err := request_ProducerService_GetProducer_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
+		if err != nil {
+			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
+			return
+		}
+
+		forward_ProducerService_GetProducer_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+
+	})
+
+	mux.Handle("POST", pattern_ProducerService_ListNewProducers_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+		ctx, cancel := context.WithCancel(req.Context())
+		defer cancel()
+		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
+		var err error
+		var annotatedContext context.Context
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/producer.ProducerService/ListNewProducers", runtime.WithHTTPPathPattern("/producer.ProducerService/ListNewProducers"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -399,13 +557,13 @@ func RegisterProducerServiceHandlerClient(ctx context.Context, mux *runtime.Serv
 
 	})
 
-	mux.Handle("GET", pattern_ProducerService_ListUpdatedProducers_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_ProducerService_ListUpdatedProducers_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/producer.ProducerService/ListUpdatedProducers", runtime.WithHTTPPathPattern("/v1/producers/updated"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/producer.ProducerService/ListUpdatedProducers", runtime.WithHTTPPathPattern("/producer.ProducerService/ListUpdatedProducers"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -427,7 +585,7 @@ func RegisterProducerServiceHandlerClient(ctx context.Context, mux *runtime.Serv
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/producer.ProducerService/MarkAsProcessed", runtime.WithHTTPPathPattern("/v1/producers/mark_as_processed"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/producer.ProducerService/MarkAsProcessed", runtime.WithHTTPPathPattern("/producer.ProducerService/MarkAsProcessed"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -449,7 +607,7 @@ func RegisterProducerServiceHandlerClient(ctx context.Context, mux *runtime.Serv
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/producer.ProducerService/NewProducer", runtime.WithHTTPPathPattern("/v1/producers/new"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/producer.ProducerService/NewProducer", runtime.WithHTTPPathPattern("/producer.ProducerService/NewProducer"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -471,7 +629,7 @@ func RegisterProducerServiceHandlerClient(ctx context.Context, mux *runtime.Serv
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/producer.ProducerService/NewProducers", runtime.WithHTTPPathPattern("/v1/producers/new_list"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/producer.ProducerService/NewProducers", runtime.WithHTTPPathPattern("/producer.ProducerService/NewProducers"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -491,18 +649,26 @@ func RegisterProducerServiceHandlerClient(ctx context.Context, mux *runtime.Serv
 }
 
 var (
-	pattern_ProducerService_ListNewProducers_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "producers", "new"}, ""))
+	pattern_ProducerService_GetAgencyProducers_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"producer.ProducerService", "GetAgencyProducers"}, ""))
 
-	pattern_ProducerService_ListUpdatedProducers_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "producers", "updated"}, ""))
+	pattern_ProducerService_GetProducer_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"producer.ProducerService", "GetProducer"}, ""))
 
-	pattern_ProducerService_MarkAsProcessed_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "producers", "mark_as_processed"}, ""))
+	pattern_ProducerService_ListNewProducers_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"producer.ProducerService", "ListNewProducers"}, ""))
 
-	pattern_ProducerService_NewProducer_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "producers", "new"}, ""))
+	pattern_ProducerService_ListUpdatedProducers_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"producer.ProducerService", "ListUpdatedProducers"}, ""))
 
-	pattern_ProducerService_NewProducers_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "producers", "new_list"}, ""))
+	pattern_ProducerService_MarkAsProcessed_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"producer.ProducerService", "MarkAsProcessed"}, ""))
+
+	pattern_ProducerService_NewProducer_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"producer.ProducerService", "NewProducer"}, ""))
+
+	pattern_ProducerService_NewProducers_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"producer.ProducerService", "NewProducers"}, ""))
 )
 
 var (
+	forward_ProducerService_GetAgencyProducers_0 = runtime.ForwardResponseMessage
+
+	forward_ProducerService_GetProducer_0 = runtime.ForwardResponseMessage
+
 	forward_ProducerService_ListNewProducers_0 = runtime.ForwardResponseMessage
 
 	forward_ProducerService_ListUpdatedProducers_0 = runtime.ForwardResponseMessage

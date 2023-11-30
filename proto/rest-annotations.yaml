@@ -20,4 +20,3 @@ http:
     - selector: producer.ProducerService.NewProducers
       post: "/v1/producers/new_list"
       body: "*"
-    
